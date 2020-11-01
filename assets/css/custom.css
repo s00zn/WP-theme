@@ -24,3 +24,10 @@
 
 /* CSS WIDGETS */
 #wp-calendar{ width: 100%; }
+
+/* COMMENTS PAGINATION */
+.commentlist .comments-pagination {
+    position: relative;
+    top: 2rem;
+    text-align: center;
+}
