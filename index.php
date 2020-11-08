@@ -1,11 +1,4 @@
-    
-    
-    <?php 
-      //In case of a v2, you type ( 'v2' ) and name your file header-v2.php
-      //header.php
-      get_header(); 
-
-    ?>
+    <?php get_header(); ?> <!-- In case of a v2, you type ( 'v2' ) and name your file header-v2.php -->
 
     <!-- Content
     ============================================= -->
@@ -18,16 +11,12 @@
             <div class="container clearfix">
               <span class="badge badge-danger bnews-title">Breaking News:</span>
 
-              <div class="fslider bnews-slider nobottommargin" data-speed="800" data-pause="6000" data-arrows="false"
-                data-pagi="false">
+              <div class="fslider bnews-slider nobottommargin" data-speed="800" data-pause="6000" data-arrows="false" data-pagi="false">
                 <div class="flexslider">
                   <div class="slider-wrap">
-                    <div class="slide"><a href="#"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </strong></a></div>
-                    <div class="slide"><a href="#"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </strong></a></div>
-                    <div class="slide"><a href="#"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </strong></a></div>
+                    <div class="slide"><a href="#"><strong> Learning all about WordPress </strong></a></div>
+                    <div class="slide"><a href="#"><strong> Takes some time, but getting there! </strong></a></div>
+                    <div class="slide"><a href="#"><strong> Browse around, and let me know what you think! </strong></a></div>
                   </div>
                 </div>
               </div>
@@ -51,12 +40,10 @@
                   while( have_posts() ){
                     the_post();
                     
-                    //centent-excerpt.php
-                    get_template_part('partials/post/content-exerpt');
-                    // 1) content-ecerpt.php 2) content.php
-                    //get_template_part('partials/post/content', 'exerpt');
-
-                    
+                    //content-excerpt.php
+                    get_template_part('partials/post/content-excerpt');
+                    // 1) content-excerpt.php 2) content.php
+                    //get_template_part('partials/post/content', 'excerpt');
                   }
                 }
 

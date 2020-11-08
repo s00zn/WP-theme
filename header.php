@@ -10,11 +10,6 @@
   <?php wp_head(); ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Document Title
-	============================================= -->
-  <title>Index Template</title>
-
 </head>
 
 <body <?php body_class( 'stretched no-transition' ); ?> >
@@ -167,7 +162,7 @@
               <a href="#" id="top-search-trigger">
                 <i class="icon-search3"></i><i class="icon-line-cross"></i>
               </a>
-              <form action="#" method="get">
+              <form action="search.html" method="get">
                 <input type="text" name="q" class="form-control" placeholder="Type &amp; Hit Enter.." value="">
               </form>
             </div><!-- #top-search end -->

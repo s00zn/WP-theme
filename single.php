@@ -1,11 +1,4 @@
-    
-    
-<?php 
-    //In case of a v2, you type ( 'v2' ) and name your file header-v2.php
-    //header.php
-    get_header(); 
-
-?>
+<?php get_header(); ?> <!-- In case of a v2, you type ( 'v2' ) and name your file header-v2.php -->
 
 <!-- Content
 ============================================= -->
@@ -38,15 +31,10 @@
                                 <!-- Entry Meta
                                 ============================================= -->
                                 <ul class="entry-meta clearfix">
-                                    <li><i class="icon-calendar3"></i> <?php echo get_the_date(); ?></li>
-                                    <li>
-                                    <a href="<?php $author_URL; ?>">
-                                        <i class="icon-user"></i> <?php the_author(); ?>
-                                    </a>
-                                    </li>
-                                    <li><i class="icon-folder-open"></i> <?php the_category( ' / ' ); ?>
-                                    </li>
-                                    <li><a href="#"><i class="icon-comments"></i> <?php comments_number( '0' ); ?></a></li>
+                                    <li> <i class="icon-calendar3"></i> <?php echo get_the_date(); ?></li>
+                                    <li> <a href="<?php $author_URL; ?>"><i class="icon-user"></i> <?php the_author(); ?></a> </li>
+                                    <li> <i class="icon-folder-open"></i> <?php the_category( ' / ' ); ?> </li>
+                                    <li> <a href="#"><i class="icon-comments"></i> <?php comments_number( '0' ); ?></a> </li>
                                 </ul><!-- .entry-meta end -->
 
                                 <!-- Entry Image
@@ -87,7 +75,7 @@
                                     </div><!-- .tagcloud end -->
                                     <div class="clear"></div>
                                 </div>
-                            </div><!-- .entry end -->
+                            </div><!-- single post end -->
 
                             <!-- Post Navigation
                             ============================================= -->
@@ -115,76 +103,98 @@
                                         <?php echo get_avatar( $author_ID, 90, '', false, [ 'class' => 'img-circle' ] ); ?>
                                     </div>
                                    <?php echo nl2br( get_the_author_meta( 'description' ) ); ?>
-                            </div><!-- Post Single - Author End -->
+                                </div>
+                            </div><!-- Post Author End -->
 
                             <div class="line"></div>
 
                             <h4>Related Posts:</h4>
 
                             <div class="related-posts clearfix">
-                                <div class="mpost clearfix">
-                                    <div class="entry-image">
-                                    <a href="#">
-                                        <img src="images/blog/small/10.jpg">
-                                    </a>
-                                    </div>
-                                    <div class="entry-c">
-                                        <div class="entry-title">
-                                            <h4>
-                                            <a href="#">
-                                                This is an Image Post
-                                            </a>
-                                            </h4>
-                                        </div>
-                                        <ul class="entry-meta clearfix">
-                                            <li><i class="icon-calendar3"></i> 10th July 2014</li>
-                                            <li><i class="icon-comments"></i> 12</li>
-                                        </ul>
-                                        <div class="entry-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit. Mollitia nisi perferendis.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mpost clearfix">
-                                        <div class="entry-image">
-                                            a href="#"><img src="images/blog/small/20.jpg" alt="Blog Single"></a>
-                                        </div>
-                                    <div class="entry-c">
-                                            <div class="entry-title">
-                                                <h4><a href="#">This is a Video Post</a></h4>
-                                            </div>
-                                        <ul class="entry-meta clearfix">
-                                            <li><i class="icon-calendar3"></i> 24th July 2014</li>
-                                            <li><i class="icon-comments"></i> 16</li>
-                                        </ul>
-                                        <div class="entry-content">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit. Mollitia nisi perferendis.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <?php 
-                                
-                                if( comments_open() || get_comments_number() ){
-                                    comments_template(); 
-                                }
-                                
-                                ?>
-                            </div>
-                            
-                        </div><!-- .postcontent end -->
 
-                    <?php
+                                <?php
+
+                                    $categories             =   get_the_category();
+                                    
+                                    $rp_query               =   new WP_Query([
+                                        'posts_per_page'    =>  2,
+                                        'post__not_in'      =>  [ $post->ID ],
+                                        'cat'               =>  !empty($categories) ? $categories[0]->term_id : null
+                                    ]);
+
+                                    if( $rp_query->have_posts() ){
+                                        while( $rp_query->have_posts() ){
+                                            $rp_query->the_post();
+
+                                            ?>
+
+                                            <div class="mpost clearfix">
+                                                <?php
+
+                                                if( has_post_thumbnail() ){
+                                                    ?>
+
+                                                    <div class="entry-image">
+                                                        <a href="<?php the_permalink(); ?>">
+                                                            <?php the_post_thumbnail( 'thumbnail' ); ?>
+                                                        </a>
+                                                    </div>
+
+                                                    <?php
+                                                }
+
+                                                ?>
+
+                                                <div class="entry-c">
+                                                    <div class="entry-title">
+                                                        <h4>
+                                                        <a href="<?php the_permalink(); ?>">
+                                                            <?php the_title(); ?>
+                                                        </a>
+                                                        </h4>
+                                                    </div>
+                                                    <ul class="entry-meta clearfix">
+                                                        <li><i class="icon-calendar3"></i> <?php echo get_the_date(); ?> </li>
+                                                        <li><i class="icon-comments"></i> <?php comments_number( '0' ); ?> </li>
+                                                    </ul>
+                                                    <div class="entry-content">
+                                                        <?php the_excerpt(); ?>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <?php
+                                        }
+
+                                        wp_reset_postdata();
+                                    }
+
+                                ?>
+
+                            </div>
+
+                            <?php 
+                                
+                            if( comments_open() || get_comments_number() ){
+                                comments_template(); 
+                            }
+                                
+                            ?>
+                            
+                            
+                        </div><!-- single-post end -->
+
+                        <?php
 
                     }
                 }
 
-            ?>
+                ?>
+
+            </div><!-- postcontent clearfix -->
 
             <?php get_sidebar(); ?>
-
-            </div>
 
         </div>
 

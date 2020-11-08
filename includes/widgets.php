@@ -1,7 +1,6 @@
 <?php
 
     function wt_widgets(){
-
         register_sidebar([
             'name'              =>  __( 'My First Theme Sidebar', 'wordpresstut' ),
             'id'                =>  'wt_sidebar',
@@ -12,3 +11,5 @@
             'after_title'       =>  '</h4>'
         ]);
     }
+
+?>

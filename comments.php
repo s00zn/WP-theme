@@ -99,7 +99,7 @@ if( post_password_required() ){
                                         <input type="text" name="url" class="sm-form-control" />
                                     </div>'
             ],
-            'class_submit'      =>  'button button-3d nomargin',
+            'class_submit'      =>  'btn btn-dark button-3d nomargin',
             'label_submit'      =>  __( 'Submit Comment', 'wordpresstut' ),
             'title_reply'       =>  __( 'Leave a <span>Comment</span>', 'wordpresstut' )
 

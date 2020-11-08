@@ -7,8 +7,6 @@
                class="form-control" name="s"
                value="<?php the_search_query(); ?>"
                placeholder="<?php _e('Search', 'wordpresstut'); ?>"/>
-        <span class="input-group-btn">
-            <button type="submit" class="btn btn-dark"><i class="icon-search"></i></button>
-        </span>
+        <button type="submit" class="btn btn-dark"><i class="icon-search"></i></button>
     </div>
 </form>

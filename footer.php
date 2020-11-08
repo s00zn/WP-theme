@@ -11,7 +11,8 @@
           <div class="col_half">
             Copyrights &copy; 2017 All Rights Reserved by Udemy.<br>
             <div class="copyright-links">
-              <a href="#">Privacy Policy</a>
+            	<a href="#">Terms of Use</a> /
+              	<a href="#">Privacy Policy</a>
             </div>
           </div>
 
