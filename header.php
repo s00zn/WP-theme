@@ -10,6 +10,7 @@
   <?php wp_head(); ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 </head>
 
 <body <?php body_class( 'stretched no-transition' ); ?> >
@@ -28,11 +29,18 @@
           <!-- Top Links
           ============================================= -->
           <div class="top-links">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">FAQs</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
+            <?php
+
+              if( has_nav_menu( 'secondary' ) ){
+                wp_nav_menu([
+                  'theme_location'            =>  'secondary',
+                  'container'                 =>  false,                  //div or ul wrapper
+                  'fallback_cb'               =>  false,                  //default fallback menu
+                  'depth'                     =>  1
+                ]);
+              }
+
+            ?>
           </div><!-- .top-links end -->
 
         </div>
@@ -86,7 +94,19 @@
         <!-- Logo
         ============================================= -->
         <div id="logo">
-          <a href="#" class="standard-logo">Wordpress Theme Tutorial</a>
+          
+          <?php
+
+          if( has_custom_logo() ){
+            the_custom_logo();
+          }else {
+            ?>
+              <a href="<?php echo home_url( '/' ); ?>" class="standard-logo"><?php bloginfo( 'name' ); ?></a>
+            <?php
+          }
+
+          ?>
+          
         </div><!-- #logo end -->
 
         <div class="top-advert">
